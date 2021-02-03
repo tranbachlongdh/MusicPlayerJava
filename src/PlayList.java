@@ -1,33 +1,42 @@
 import java.util.*;
 
-public class PlayList {
+public class Playlist {
 	private String name;
-	private LinkedList<Song> playList;
+	private String description = "";
+	private LinkedList<Song> songs;
 	
-	public PlayList(String name) {
-		this(name, new LinkedList<Song>());
+	public Playlist(String name) {
+		this(name, "", new LinkedList<Song>());
 	}
 	
-	public PlayList(String name, LinkedList<Song> playList) {
+	public Playlist(String name, String description, LinkedList<Song> songs) {
 		this.name = name;
-		this.playList = playList;
+		this.description = description;
+		this.songs = songs;
 	}
 
 	public String getName() {
 		return name;
 	}
 	
-	public LinkedList<Song> getPlayList() {
-		return playList;
+	public String getDescription() {
+		return description;
+	}
+	
+	public LinkedList<Song> getSongs() {
+		return songs;
 	}
 
 	public void setName(String name) {
 		this.name = name;
 	}
+	
+	public void setdescription(String description) {
+		this.name = description;
+	}
 
-
-	public void setPlayList(LinkedList<Song> playList) {
-		this.playList = playList;
+	public void setSongs(LinkedList<Song> songs) {
+		this.songs = songs;
 	}
 	
 	

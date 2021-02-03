@@ -73,39 +73,12 @@ public class Album {
 		return false;
 	}
 	
-//	public boolean addSong(Song song) {
-//		if (findSong(song) == null) {
-//			songList.add(song);
-//			return true;
-//		}
-//		return false;
-//	}
-//	public boolean removeSong(Song song) {
-//		if (findSong(song) != null) {
-//			songList.remove(song.getTitle());
-//			return true;
-//		}
-//		return false;
-//	}
+	public boolean update() {
+		
+		return false;
+	}
 	
-//	public boolean editSongInfo(Song song, String title, int duration, Composer composer, String genre) {
-//		Song newSong = new Song(title, duration, composer, genre);
-//		if (findSong(song) != null) {
-//			songList.set(index, newSong);
-//			return true;
-//		}
-//		return false;
-//	}
 	
-//	public Song findSong(Song song) {
-//		for (int i=0; i< songList.size(); i++) {
-//			Song songTemp = songList.get(i);
-//			if (song.getTitle().toLowerCase().equals(songTemp.getTitle().toLowerCase())) {
-//				return songTemp;
-//			}
-//		}
-//		return null;
-//	}
 	
 	
 	

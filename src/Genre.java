@@ -1,22 +1,21 @@
 import java.util.ArrayList;
 
-public class Composer {
+public class Genre {
 	private String name;
 	private ArrayList<Song> songs;
-	
-	public Composer() {
+
+	public Genre() {
 		this("UNKNOWN", new ArrayList<Song>());
 	}
 	
-	public Composer(String name) {
+	public Genre(String name) {
 		this(name, new ArrayList<Song>());
 	}
 	
-	public Composer(String name, ArrayList<Song> songs) {
+	public Genre(String name, ArrayList<Song> songs) {
 		this.name = name;
 		this.songs = songs;
 	}
-
 
 	public String getName() {
 		return name;
@@ -33,9 +32,8 @@ public class Composer {
 	public void setSongs(ArrayList<Song> songs) {
 		this.songs = songs;
 	}
-
 	
 	
 	
-
+	
 }
