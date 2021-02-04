@@ -11,9 +11,9 @@ public class Main {
 	public static void main(String[] args) {
 		Date date = new Date();
 		
-		Song song1 = new Song("My love", 180, "westLife", "POP", 2005, false);
-		Song song2 = new Song("Uptown girl", 195, "westLife", "POP", 2005, false);
-		Song song3 = new Song("Flying without wings", 265, "westLife123", "POP", 2005, false);
+		Song song1 = new Song("My love", 180, "westLife", "westLife", "Road to the West", "POP", 2005);
+		Song song2 = new Song("Uptown girl", 195, "westLife", "westLife", "Road to the West", "POP", 2005);
+		Song song3 = new Song("Flying without wings", 265, "westLife123", "westLife", "Road to the West", "POP", 2005);
 		Song song4 = new Song("Love 5", 265);
 		
 		Library.addSong(song1);
@@ -21,12 +21,22 @@ public class Main {
 		Library.addSong(song3);
 		Library.addSong(song4);
 		
-		Library.listAllSongs(false);
-//		if(!Library.editComposer("westLife123")) System.out.println("Composer not found");
-//		Library.editSong("My Love");
-		Library.listAllComposers(true);
-		Library.listAllGenres(true);
-		Library.listAllPlaylists(true);
+		
+		Playlist myPlaylist = new Playlist("myPlaylist");
+		Adder.addSongToPlaylist(myPlaylist, song1);
+		Adder.addSongToPlaylist(myPlaylist, song2);
+		Adder.addSongToPlaylist(myPlaylist, song3);
+		Adder.addSongToPlaylist(myPlaylist, song4);
+		
+//		
+//		Displayer.displayByProperty("composer", true);
+//		Displayer.displayByProperty("genre", true);
+
+		Displayer.displayByProperty("composer", true);
+//		Displayer.displayGenres(genres, isFullInfo);
+		
+		
+		
 		
 		
 //		Library.getSongList();

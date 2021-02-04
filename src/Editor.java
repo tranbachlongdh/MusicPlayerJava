@@ -31,44 +31,44 @@ public class Editor {
 	
 	//----------------------------------Song-------------------------------------------------------
 	
-	public static void editSongInfo(Song song, String title, int duration, String composerName, String genreName) {
-		song.setTitle(title);
-		song.setDuration(duration);
-		Composer composer = Searcher.searchComposer(Library.getComposers(), composerName);
-		if (composer != null) {
-			song.setComposer(composer);
-		} else {
-			Composer newComposer = new Composer(composerName);
-			Library.addComposer(newComposer);
-			song.setComposer(newComposer);
-		}
-		
-
-		Genre genre = Searcher.searchGenre(Library.getGenres(), genreName);
-		if (genre != null) {
-			song.setGenre(genre);
-		} else {
-			Genre newGenre = new Genre(genreName);
-			Library.addGenre(newGenre);
-			song.setGenre(newGenre);
-		}
-		System.out.print("Song's info has been updated.");
-	}
+//	public static void editSongInfo(Song song, String title, int duration, String composerName, String genreName) {
+//		song.setTitle(title);
+//		song.setDuration(duration);
+//		Composer composer = Searcher.searchComposer(Library.getComposers(), composerName);
+//		if (composer != null) {
+//			song.setComposer(composer);
+//		} else {
+//			Composer newComposer = new Composer(composerName);
+//			Library.addComposer(newComposer);
+//			song.setComposer(newComposer);
+//		}
+//		
+//
+//		Genre genre = Searcher.searchGenre(Library.getGenres(), genreName);
+//		if (genre != null) {
+//			song.setGenre(genre);
+//		} else {
+//			Genre newGenre = new Genre(genreName);
+//			Library.addGenre(newGenre);
+//			song.setGenre(newGenre);
+//		}
+//		System.out.print("Song's info has been updated.");
+//	}
 	
-	public static void editSongInfo(Song song) {
-		System.out.println("Edit Song's info:");
-		System.out.print("Enter new song title:");
-		String title = scanner.nextLine();
-		System.out.print("Duration (second):");
-		int duration = scanner.nextInt();
-		scanner.nextLine();
-		System.out.print("Enter composer's name:");
-		String composerName = scanner.nextLine();
-		System.out.print("Genre:");
-		String genre = scanner.nextLine();
-		
-		editSongInfo(song, title, duration, composerName, genre);
-	}
+//	public static void editSongInfo(Song song) {
+//		System.out.println("Edit Song's info:");
+//		System.out.print("Enter new song title:");
+//		String title = scanner.nextLine();
+//		System.out.print("Duration (second):");
+//		int duration = scanner.nextInt();
+//		scanner.nextLine();
+//		System.out.print("Enter composer's name:");
+//		String composerName = scanner.nextLine();
+//		System.out.print("Genre:");
+//		String genre = scanner.nextLine();
+//		
+//		editSongInfo(song, title, duration, composerName, genre);
+//	}
 
 	//-----------------------------------------------------------------------------------------
 	
