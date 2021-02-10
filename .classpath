@@ -2,5 +2,6 @@
 <classpath>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.USER_LIBRARY/jaudiotagger-2.2.6-SNAPSHOT-sources"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

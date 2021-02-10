@@ -5,6 +5,7 @@ import java.util.*;
 
 
 public class Song {
+	private String path;
 	private String title;
 	private String composer;
 	private String artist;
@@ -17,11 +18,12 @@ public class Song {
 	private static final String UNKNOWN = "UNKNOWN"; 
 
 	public Song(String title, int duration) {
-		this(title, duration, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN , 0);
+		this("C:\\Users\\W_Dragon\\Music\\"+title, title, duration, UNKNOWN, UNKNOWN, UNKNOWN, UNKNOWN , 0);
 	}
 	
 	
-public Song(String title, int duration, String composer, String artist, String album, String genre, int year) {
+	public Song(String path, String title, int duration, String composer, String artist, String album, String genre, int year) {
+		this.path = path;
 		this.title = title;
 		this.composer = composer;
 		this.artist = artist;
@@ -57,7 +59,10 @@ public Song(String title, int duration, String composer, String artist, String a
 //	}
 
 
-	
+	public String getPath() { return path; }
+
+	public void setPath(String path) { this.path = path; }
+
 	public String getTitle() {
 		return title;
 	}
@@ -122,7 +127,7 @@ public Song(String title, int duration, String composer, String artist, String a
 		this.isSuggest = isSuggest;
 	}
 	
-
+	// Method to transform duration to specific fomat of hh:mm:ss
 	public String durationFormatter() {
 		return String.format("%d:%02d:%02d", duration / 3600, (duration % 3600) / 60, (duration % 60));
 	}

@@ -67,16 +67,17 @@ public class Library {
 		Displayer.displaySongs(Library.getSongs(), fullInfo);
 	}
 	
-	
+	// Add more song to library bases on file path
 	public static boolean addSong(Song song) {
-		if(Searcher.searchSongPosition(songs, song.getTitle())<0) {
+		if(Searcher.searchSongPosition(songs, song.getPath())<0) {
 			songs.add(song);
 			return true;
 		}
 		return false;
 		
 	}
-	
+
+	// Remove song from library
 	public static boolean removeSong(String title) {
 		int songPosition = Searcher.searchSongPosition(songs, title);
 		if (songPosition >= 0) {
