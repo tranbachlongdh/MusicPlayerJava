@@ -1,9 +1,15 @@
+import org.jaudiotagger.audio.exceptions.CannotReadException;
+import org.jaudiotagger.audio.exceptions.InvalidAudioFrameException;
+import org.jaudiotagger.audio.exceptions.ReadOnlyFileException;
+import org.jaudiotagger.tag.TagException;
+
+import java.io.IOException;
 import java.util.*;
 
 public class Library {
 
-	private static ArrayList<Song> songs = new ArrayList<Song>();
-	private static ArrayList<Playlist> playlists = new ArrayList<Playlist>();
+	private static ArrayList<Song> songs = new ArrayList<>();
+	private static ArrayList<Playlist> playlists = new ArrayList<>();
 	
 	
 	
@@ -75,6 +81,23 @@ public class Library {
 		}
 		return false;
 		
+	}
+
+	// Add songs to library
+	public static void addSongs(String path) throws IOException, ReadOnlyFileException, TagException, InvalidAudioFrameException, CannotReadException {
+		List<String> songs = ProcessDir.process(path);
+		// Go through each file and add to library
+		for(String s : songs) {
+			List<String> fileInfo = ProcessDir.mp3FileInfo(s);
+			Library.addSong(new Song(fileInfo.get(0), 						// Path
+										fileInfo.get(1), 					// Title
+										Integer.parseInt(fileInfo.get(2)), 	// Duration
+										fileInfo.get(3), 					// Composer
+										fileInfo.get(4), 					// Artist
+										fileInfo.get(5), 					// Album
+										fileInfo.get(5), 					// Genre
+										Integer.parseInt(fileInfo.get(7)))); // Year
+		}
 	}
 
 	// Remove song from library

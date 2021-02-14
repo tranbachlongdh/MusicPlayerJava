@@ -8,24 +8,27 @@ import org.jaudiotagger.tag.KeyNotFoundException;
 import org.jaudiotagger.tag.Tag;
 import org.jaudiotagger.tag.TagException;
 
+import javax.swing.*;
+import javax.swing.filechooser.FileNameExtensionFilter;
+import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 public class ProcessDir {
 
+    // Process the directory to get the list of mp3 files.
     public static List<String> process(String path) throws IOException {
         String result, _result[];
-        ArrayList<String> mp3Result = new ArrayList<String>();
+        ArrayList<String> mp3Result = new ArrayList<>();
 
         if ( (new File(path)).exists() ) {
             result = recurseInDirFrom(path);
             _result = result.split("\\|");
-            for(int i=0; i<_result.length; i++) {
-                if(_result[i].endsWith(".mp3")){
-                    mp3Result.add(_result[i]);
+            for (String s : _result) {
+                if (s.endsWith(".mp3")) {
+                    mp3Result.add(s);
                 }
             }
             return (mp3Result);
@@ -43,16 +46,16 @@ public class ProcessDir {
         file = new File(dir);
         if (file.isDirectory()) {
             list = file.list();
-            for (int i = 0; i < list.length; i++)
+            for (String s : list)
                 result = result + "|"
-                        + recurseInDirFrom(dir + File.separatorChar + list[i]);
+                        + recurseInDirFrom(dir + File.separatorChar + s);
         }
         return result;
     }
 
     // Get the mp3 file information
     public static List<String> mp3FileInfo(String file) throws TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException, IOException {
-        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<String> result = new ArrayList<>();
         MP3File mp3file = (MP3File) AudioFileIO.read(new File(file));
         try {
             Tag fileTag = mp3file.getTag();
@@ -73,10 +76,6 @@ public class ProcessDir {
                 result.add(genre);
                 result.add(year);
 
-//                System.out.println("Album: " + album);
-//                System.out.println("Artist: " + artist);
-//                System.out.println("Composer: " + composer);
-//                System.out.println("Year: " + year);
             }
             else {
                 System.out.println("No tag found for " + file);
@@ -91,14 +90,25 @@ public class ProcessDir {
     }
 
 
-//    public static void main(String[] args) throws IOException, TagException, ReadOnlyFileException, CannotReadException, InvalidAudioFrameException {
-//        String path = "C:\\Users\\W_Dragon\\Music\\";
-//        //System.out.println("Process " + path);
-//
-//        List<String> mp3List = ProcessDir.process(path);
-//        for(String s : mp3List) {
-//            System.out.println("Mp3 file: " + ProcessDir.mp3FileInfo(s));
-//
-//        }
-//    }
+    public static String choosePath(){
+        System.out.println("Choose file/Directory");
+        JFileChooser fileChooser=new JFileChooser();
+        fileChooser.setCurrentDirectory(new File("C:\\Users\\W_Dragon\\Music\\"));
+        fileChooser.setDialogTitle("Select Mp3");
+        fileChooser.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Mp3 files","mp3"));
+        Component selectButton = null;
+        fileChooser.showOpenDialog(null);
+//            File myFile = fileChooser.getSelectedFile();
+//            String filename = fileChooser.getSelectedFile().getName();
+        return fileChooser.getSelectedFile().getPath();
+    }
+
+
+
+
+
+
+
+
 }

@@ -1,8 +1,14 @@
 import java.util.*;
 
 public class Editor {
-	private static Scanner scanner = new Scanner(System.in);
-	
+//	private static Scanner scanner = new Scanner(System.in);
+
+	//----------------------------------Playlist-------------------------------------------------------
+	public static void clearPlaylist(LinkedList<Song> playlist) {
+		playlist.clear();
+	}
+
+
 	//----------------------------------Composer-------------------------------------------------------
 	
 //	public static void editComposerInfo(Composer composer, String name, int age, boolean isGroup) {

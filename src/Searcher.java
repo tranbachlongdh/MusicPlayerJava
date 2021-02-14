@@ -15,10 +15,10 @@ public class Searcher {
 	}
 	//----------------------------------Songs-------------------------------------------------------
 
-	public static int searchSongPosition(List<Song> songList, String title) {
+	public static int searchSongPosition(List<Song> songList, String path) {
 		for(int i=0; i<songList.size();i++) {
 			Song song = songList.get(i);
-			if(song.getTitle().equalsIgnoreCase(title)) {
+			if(song.getPath().equalsIgnoreCase(path)) {
 				return i;
 			}
 		}
@@ -29,9 +29,8 @@ public class Searcher {
 	//----------------------------------Playlists-------------------------------------------------------
 	
 	public static Playlist searchPlaylist(ArrayList<Playlist> playlists, String name) {
-		for(int i=0; i<playlists.size();i++) {
-			Playlist playlist = playlists.get(i);
-			if(playlist.getName().equalsIgnoreCase(name)) {
+		for (Playlist playlist : playlists) {
+			if (playlist.getName().equalsIgnoreCase(name)) {
 				return playlist;
 			}
 		}
@@ -52,34 +51,34 @@ public class Searcher {
 
 	//--------------------------------------------------------------------------------------------------
 	public static List<String> searchProperty(String choice){
-		ArrayList<String> result = new ArrayList<String>();
+		ArrayList<String> result = new ArrayList<>();
 		List<Song> songs = Library.getSongs();
 		String item = null;
-		
-		for (int i=0; i< songs.size(); i++) {
-			
+
+		for (Song song : songs) {
+
 			switch (choice) {
 				case "composer":
-					item = songs.get(i).getComposer();
+					item = song.getComposer();
 					break;
 				case "artist":
-					item = songs.get(i).getArtist();
+					item = song.getArtist();
 					break;
 				case "genre":
-					item = songs.get(i).getGenre();
+					item = song.getGenre();
 					break;
 				case "album":
-					item = songs.get(i).getAlbum();
+					item = song.getAlbum();
 					break;
 				case "year":
-					item = String.valueOf(songs.get(i).getYear());
+					item = String.valueOf(song.getYear());
 					break;
 				default: {
 					System.out.println("Wrong choice!!!");
 				}
 			}
-			
-			if (Searcher.searchStringInList(result, item)<0) {
+
+			if (Searcher.searchStringInList(result, item) < 0) {
 				result.add(item);
 			}
 		}
@@ -100,49 +99,48 @@ public class Searcher {
 		return searchSongByProperty(songs, "genre", genre);
 	}
 	
-	public static LinkedList<Song> searchSongByProperty(List<Song> songs, String specificType, String searchPattern) {
+	public static List<Song> searchSongByProperty(List<Song> songs, String specificType, String searchPattern) {
 		
-		//convert to lowecase
+		//convert to lowercase
 		specificType = specificType.toLowerCase();
-		LinkedList<Song> searchSongs = new LinkedList<Song>();
-		
-		
-		for (int i=0; i<songs.size(); i++) {
+		ArrayList<Song> searchedSongs = new ArrayList<>();
+
+
+		for (Song song : songs) {
 			boolean matched = false;
-			Song song = songs.get(i);
 			switch (specificType) {
 				case "title":
-					if(song.getTitle().equalsIgnoreCase(searchPattern)) {
+					if (song.getTitle().equalsIgnoreCase(searchPattern)) {
 						matched = true;
 					}
 					break;
 				case "composer":
-					if(song.getComposer().equalsIgnoreCase(searchPattern)) {
+					if (song.getComposer().equalsIgnoreCase(searchPattern)) {
 						matched = true;
 					}
 					break;
 				case "artist":
-					if(song.getArtist().equalsIgnoreCase(searchPattern)) {
+					if (song.getArtist().equalsIgnoreCase(searchPattern)) {
 						matched = true;
 					}
 					break;
 				case "genre":
-					if(song.getGenre().equalsIgnoreCase(searchPattern)) {
+					if (song.getGenre().equalsIgnoreCase(searchPattern)) {
 						matched = true;
 					}
 					break;
 				case "album":
-					if(song.getAlbum().equalsIgnoreCase(searchPattern)) {
+					if (song.getAlbum().equalsIgnoreCase(searchPattern)) {
 						matched = true;
 					}
 					break;
 				case "year":
-					if(song.getYear()==Integer.valueOf(searchPattern)) {
+					if (song.getYear() == Integer.parseInt(searchPattern)) {
 						matched = true;
 					}
 					break;
 				case "suggested":
-					if(song.isSuggest()) {
+					if (song.isSuggest()) {
 						matched = true;
 					}
 					break;
@@ -150,14 +148,14 @@ public class Searcher {
 					System.out.println("Wrong searching code!!!");
 				}
 			}
-			
-			if(matched==true) {
-				//Add song which was found to a new linked list
-				Adder.addSongToLinkedList(searchSongs, song);
+
+			if (matched) {
+				//Add song which was found to a new list
+				searchedSongs.add(song);
 			}
-			
+
 		}
-		return searchSongs;
+		return searchedSongs;
 	}
 	
 	

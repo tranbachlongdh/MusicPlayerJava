@@ -2,11 +2,11 @@ import java.util.*;
 
 public class Playlist {
 	private String name;
-	private String description = "";
+	private String description;
 	private LinkedList<Song> songs;
 	
 	public Playlist(String name) {
-		this(name, "", new LinkedList<Song>());
+		this(name, "", new LinkedList<>());
 	}
 	
 	public Playlist(String name, String description, LinkedList<Song> songs) {
@@ -38,6 +38,10 @@ public class Playlist {
 	public void setSongs(LinkedList<Song> songs) {
 		this.songs = songs;
 	}
+
+//	public void addSong(Song song) {
+//
+//	}
 	
 	
 	

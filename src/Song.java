@@ -1,9 +1,3 @@
-import java.time.Duration;
-import java.math.*;
-import java.util.*;
-
-
-
 public class Song {
 	private String path;
 	private String title;
@@ -13,7 +7,7 @@ public class Song {
 	private String genre;
 	private int duration;
 	private int year;
-	private boolean isSuggest = false;
+	private boolean isSuggest;
 	
 	private static final String UNKNOWN = "UNKNOWN"; 
 
@@ -25,38 +19,15 @@ public class Song {
 	public Song(String path, String title, int duration, String composer, String artist, String album, String genre, int year) {
 		this.path = path;
 		this.title = title;
-		this.composer = composer;
-		this.artist = artist;
-		this.album = album;
-		this.genre = genre;
+		this.composer = composer.isEmpty()?UNKNOWN:composer;
+//		this.composer = composer;
+		this.artist = artist.isEmpty()?UNKNOWN:artist;
+		this.album = album.isEmpty()?UNKNOWN:album;
+		this.genre = genre.isEmpty()?UNKNOWN:genre;
 		this.duration = duration;
 		this.year = year;
 		this.isSuggest = false;
 	}
-
-
-
-//	public Song(String title, int duration, String composerName, String genreName, int year, boolean isSuggest) {
-//		this.title = title;
-//		this.duration = duration;
-////		this.genre = genre;
-//		this.year = year;
-//		this.isSuggest = isSuggest;
-//		
-//		this.composer = Searcher.searchComposer(Library.getComposers(), composerName);
-//		if (this.composer==null) {
-//			Composer newComposer = new Composer(composerName);
-//			Library.addComposer(newComposer);
-//			this.composer = newComposer;
-//		}
-//		this.genre = Searcher.searchGenre(Library.getGenres(), genreName);
-//		if (this.genre==null) {
-//			Genre newGenre = new Genre(genreName);
-//			Library.addGenre(newGenre);
-//			this.genre = newGenre;
-//		}
-//		
-//	}
 
 
 	public String getPath() { return path; }
@@ -127,7 +98,7 @@ public class Song {
 		this.isSuggest = isSuggest;
 	}
 	
-	// Method to transform duration to specific fomat of hh:mm:ss
+	// Method to transform duration to specific format of hh:mm:ss
 	public String durationFormatter() {
 		return String.format("%d:%02d:%02d", duration / 3600, (duration % 3600) / 60, (duration % 60));
 	}
